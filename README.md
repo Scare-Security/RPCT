@@ -141,4 +141,17 @@ end RPC templating
 </html>
 ```
 
-the engine will generate all the data needed, since you can run go locally in RPC if the variables are defined you can use them to generate HTML
+the engine will generate all the data needed, since you can run go locally in RPC if the variables are defined you can use them to generate HTML. 
+
+# How would the engine work in this case 
+
+Well the engine has to be developed really well and thought of really well, RPC has identifiers which allow it to be well a decent formatting language for HTML. The engine will scower the HTML file until it sees that there is a title for `init RPC templating` when it sees this symbol it will expect 5 things 
+
+`{`, `(`, `[`, then a call to `RPC -> RPCL6_Count | RPC.Brick => {{{` once it verifies the line count then it will continue on to see a Unit symbol, the unit symbol decleration tells the engine the next block is a unit, this unit will be the go script, all the code underneath this brick will be taken as go script, then until it finds RPC::Unit::SYMBOL | RPC.BRICK END it will put it into a go script and run it then generate the HTML accordingly. THe engine works in wacky ways and is not just inacurate like this. 
+
+The reason you have to declare 
+
+`RPC -> RPCL` is because the engine relies on the line count of the HTML-RPC brick to create and predict the next rendering interface for the HTML code
+
+so if you start to call to render on line 90 of your HTML file you must have `RPC -> RPCL90_COUNT` if not the engine will error out saying it has a unexpected symbol on so and so line but needs so and so line count. if the line number is wrong the engine will correct the code itself and assume that you meant that line then continue going.
+ 
