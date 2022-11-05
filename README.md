@@ -158,4 +158,48 @@ so if you start to call to render on line 90 of your HTML file you must have `RP
 # photo of the engine translating raw RPCT code 
 
 ![](engine.png)
+
+# Other examples 
+
+Here is an example of RPC's super set files which are sets of files that can not only let you program and use Lua, C and C++ but mix classes and modules together as well. these files are known as RPCLCCPQ files 
+
+```
+@#{<lualib>}#@
+@#{<libc>}#@
+@#{<supersetc>}#@
+@#{<stdlib>}#
+@#{CLASS(filename.rpc++)}#@
+@#{$$MOD(rpch++)$$}#@
+
+RPC Class Structure {
+    RPC>*MODULE (modulename) START* 
+            ||
+                RPCO INIT {{{
+
+                        (  ----> RPCOUTPUT << PREPARE("hello world")    )
+
+                            ~> RPCOUTPUT
+                }}}
+            ||  
+    RPC>*MODULE (modulename) END^
+}
+
+String : String : interface{} => CALL_LUA(X, Y, Z) -> LUA {
+    a=math.abs(Y-Y) 
+    b=math.abs(X-X)
+    c=math.sqrt(a*a+b*b)
+    print(c)
+}
+
+VOID : => CALL_CPP() -> C++ {
+    const auto data = nullptr;
+    namespace functions {
+        void functiontocall();
+    };
+}
+
+String : => CALL_C(message) -> C {
+    printf("%s", message);
+}
+```
  
