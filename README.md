@@ -154,4 +154,8 @@ The reason you have to declare
 `RPC -> RPCL` is because the engine relies on the line count of the HTML-RPC brick to create and predict the next rendering interface for the HTML code
 
 so if you start to call to render on line 90 of your HTML file you must have `RPC -> RPCL90_COUNT` if not the engine will error out saying it has a unexpected symbol on so and so line but needs so and so line count. if the line number is wrong the engine will correct the code itself and assume that you meant that line then continue going.
+
+# photo of the engine translating raw RPCT code 
+
+![](engine.png)
  
